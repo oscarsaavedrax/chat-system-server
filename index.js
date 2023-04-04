@@ -22,10 +22,7 @@ const server = http.createServer(gameServer);
 // Create variable to use socket.io functions
 const io = new Server(server, {
   cors: {
-    origin: [
-      "https://chat-system-client.onrender.com/",
-      "https://chat-system-client.onrender.com/chat",
-    ],
+    origin: "*:*",
     methods: ["GET", "POST"],
   },
 });

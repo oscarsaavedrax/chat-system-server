@@ -13,7 +13,7 @@ import { Server } from "socket.io";
 const gameServer = express();
 
 // Helps prevent connection errors
-gameServer.use(cors());
+// gameServer.use(cors());
 // Set the PORT to listen on
 const PORT = process.env.PORT || 4000;
 // Create http server with express

@@ -27,6 +27,8 @@ const io = new Server(server, {
       "https://chat-system-client.onrender.com/chat",
     ],
     methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
   },
 });
 

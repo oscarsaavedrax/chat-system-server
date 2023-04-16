@@ -32,6 +32,15 @@ const io = new Server(server, {
   },
 });
 
+gameServer.use((req, res, next) => {
+  res.setHeader("Allow-Control-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 gameServer.get("/", (req, res) => {
   res.write("<h1>Socket IO start on Port : </h1>");
   res.write(PORT);

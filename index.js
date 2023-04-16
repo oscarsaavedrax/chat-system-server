@@ -19,14 +19,17 @@ const PORT = process.env.PORT || 4000;
 // Create http server with express
 const server = http.createServer(gameServer);
 
-gameServer.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+const corsOption = {
+  origin: [
+    "https://chat-system-client.onrender.com/",
+    "https://chat-system-client.onrender.com/chat",
+  ],
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+gameServer.use(cors(corsOption));
 
 gameServer.get("/", (req, res) => {
   res.write("<h1>Socket IO start on Port : </h1>");
@@ -35,17 +38,7 @@ gameServer.get("/", (req, res) => {
 });
 
 // Create variable to use socket.io functions
-const io = new Server(server, {
-  // cors: {
-  //   origin: [
-  //     "https://chat-system-client.onrender.com/",
-  //     "https://chat-system-client.onrender.com/chat",
-  //   ],
-  //   methods: ["GET", "POST"],
-  //   allowedHeaders: ["Content-Type"],
-  //   credentials: true,
-  // },
-});
+const io = new Server(server, { cors: corsOption });
 
 // List of users
 let users = [];

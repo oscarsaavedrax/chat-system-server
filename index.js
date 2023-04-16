@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 4000;
 const server = http.createServer(gameServer);
 
 gameServer.use((req, res, next) => {
-  res.setHeader("Allow-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"

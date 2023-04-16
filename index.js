@@ -36,15 +36,15 @@ gameServer.get("/", (req, res) => {
 
 // Create variable to use socket.io functions
 const io = new Server(server, {
-  cors: {
-    origin: [
-      "https://chat-system-client.onrender.com/",
-      "https://chat-system-client.onrender.com/chat",
-    ],
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-  },
+  // cors: {
+  //   origin: [
+  //     "https://chat-system-client.onrender.com/",
+  //     "https://chat-system-client.onrender.com/chat",
+  //   ],
+  //   methods: ["GET", "POST"],
+  //   allowedHeaders: ["Content-Type"],
+  //   credentials: true,
+  // },
 });
 
 // List of users

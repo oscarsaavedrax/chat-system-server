@@ -32,6 +32,11 @@ const io = new Server(server, {
   },
 });
 
+gameServer.get("/", (req, res) => {
+  res.write("<h1>Socket IO start on Port : $(PORT)</h1>");
+  res.end();
+});
+
 // List of users
 let users = [];
 

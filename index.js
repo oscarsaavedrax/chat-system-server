@@ -16,8 +16,6 @@ const gameServer = express();
 // gameServer.use(cors());
 // Set the PORT to listen on
 const PORT = process.env.PORT || 4000;
-// Create http server with express
-const server = http.createServer(gameServer);
 
 const corsOption = {
   origin: [
@@ -32,11 +30,12 @@ const corsOption = {
 gameServer.use(cors(corsOption));
 
 gameServer.get("/", (req, res) => {
-  res.write("<h1>Socket IO start on Port : </h1>");
   res.write(PORT);
   res.end();
 });
 
+// Create http server with express
+const server = http.createServer(gameServer);
 // Create variable to use socket.io functions
 const io = new Server(server, { cors: corsOption });
 

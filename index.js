@@ -19,19 +19,6 @@ const PORT = process.env.PORT || 4000;
 // Create http server with express
 const server = http.createServer(gameServer);
 
-// Create variable to use socket.io functions
-const io = new Server(server, {
-  cors: {
-    origin: [
-      "https://chat-system-client.onrender.com/",
-      "https://chat-system-client.onrender.com/chat",
-    ],
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-  },
-});
-
 gameServer.use((req, res, next) => {
   res.setHeader("Allow-Control-Origin", "*");
   res.header(
@@ -45,6 +32,19 @@ gameServer.get("/", (req, res) => {
   res.write("<h1>Socket IO start on Port : </h1>");
   res.write(PORT);
   res.end();
+});
+
+// Create variable to use socket.io functions
+const io = new Server(server, {
+  cors: {
+    origin: [
+      "https://chat-system-client.onrender.com/",
+      "https://chat-system-client.onrender.com/chat",
+    ],
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
+  },
 });
 
 // List of users

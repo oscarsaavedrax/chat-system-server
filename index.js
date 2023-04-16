@@ -33,7 +33,8 @@ const io = new Server(server, {
 });
 
 gameServer.get("/", (req, res) => {
-  res.write("<h1>Socket IO start on Port : $(PORT)</h1>");
+  res.write("<h1>Socket IO start on Port : </h1>");
+  res.write(PORT);
   res.end();
 });
 

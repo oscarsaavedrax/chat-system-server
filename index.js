@@ -17,9 +17,9 @@ const PORT = process.env.PORT || 4000;
 
 const corsOptions = { origin: "*", credentials: true };
 
-gameServer.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
-gameServer.get("/", (req, res) => {
+app.get("/", (req, res) => {
   res.write(PORT);
   res.end();
 });
@@ -27,7 +27,7 @@ gameServer.get("/", (req, res) => {
 // Create http server with express
 const server = http.createServer(app);
 // Create variable to use socket.io functions
-const io = new Server(server, { cors: corsOption });
+const io = new Server(server, { cors: corsOptions });
 
 // List of users
 let users = [];

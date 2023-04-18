@@ -10,24 +10,14 @@ import http from "http";
 import { Server } from "socket.io";
 
 // Use gameServer as an instance of express
-const gameServer = express();
+const app = express();
 
-// Helps prevent connection errors
-// gameServer.use(cors());
 // Set the PORT to listen on
 const PORT = process.env.PORT || 4000;
 
-const corsOption = {
-  origin: [
-    "https://chat-system-client.onrender.com/",
-    "https://chat-system-client.onrender.com/chat",
-  ],
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-};
+const corsOptions = { origin: "*", credentials: true };
 
-gameServer.use(cors(corsOption));
+gameServer.use(cors(corsOptions));
 
 gameServer.get("/", (req, res) => {
   res.write(PORT);
@@ -35,7 +25,7 @@ gameServer.get("/", (req, res) => {
 });
 
 // Create http server with express
-const server = http.createServer(gameServer);
+const server = http.createServer(app);
 // Create variable to use socket.io functions
 const io = new Server(server, { cors: corsOption });
 

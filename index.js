@@ -15,7 +15,10 @@ const app = express();
 // Set the PORT to listen on
 const PORT = process.env.PORT || 4000;
 
-const corsOptions = { origin: "*", credentials: true };
+const corsOptions = {
+  origin: "https://test-chat-client-491b.herokuapp.com/",
+  credentials: true,
+};
 
 app.use(cors(corsOptions));
 

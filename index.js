@@ -9,6 +9,9 @@ import http from "http";
 // Get the Server class from socket.io
 import { Server } from "socket.io";
 
+// Testing python script
+import childProcess from "child_process";
+
 // Use gameServer as an instance of express
 const app = express();
 
@@ -35,9 +38,18 @@ const io = new Server(server, { cors: corsOptions });
 // List of users
 let users = [];
 
+// Testing python script
+const spawner = childProcess.spawn;
+
 // Listen for any sockets trying to connect to server
 io.on("connection", (socket) => {
   console.log(socket.id, "user just connected!");
+
+  // Testing python script
+  const python_process = spawner("python", ["./testpython.py"]);
+  python_process.stdout.on("data", function (data) {
+    console.log("SERVER RECEIVED PYTHON OUTPUT: " + data.toString());
+  });
 
   // Listens and logs messages to console
   socket.on("send-message", (data) => {
